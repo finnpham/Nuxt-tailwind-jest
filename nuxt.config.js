@@ -24,6 +24,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: './tailwind.config.js', srr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -41,5 +42,27 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    postcss: {
+      // Add plugin names as key and arguments as value
+      // Install them before as dependencies with npm or yarn
+      plugins: {
+        // Disable a plugin by passing false as value
+        'postcss-url': false,
+        'postcss-nested': {},
+        'postcss-hexrgba': {},
+        'postcss-import': true
+      },
+      preset: {
+        stage: 1,
+        // Change the postcss-preset-env settings
+        features: {
+          'focus-within-pseudo-class': false,
+          'postcss-nested': {}
+        },
+        autoprefixer: {
+          flexbox: true
+        }
+      }
+    }
   }
 }
